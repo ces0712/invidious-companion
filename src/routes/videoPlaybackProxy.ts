@@ -284,7 +284,7 @@ videoPlaybackProxy.get("/", async (c) => {
         }
     };
 
-    pump().catch((err) => {
+    pump().then(() => stream.close()).catch((err) => {
         const detail = err instanceof Error
             ? `${err.name}: ${err.message}`
             : String(err);
